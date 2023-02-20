@@ -19,6 +19,7 @@ const Block = styled.div`
   z-index: 10;
 
   box-shadow: 0px 0 8px rgb(0, 0, 0, 0.08);
+  color: ${({ theme }) => theme.color.red};
 `;
 
 export default FloatingHeader;

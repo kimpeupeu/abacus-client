@@ -7,16 +7,20 @@ import {
   brands,
   icon,
 } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+import { useAppDispatch } from "../../models/core/hooks";
+import { enableDarkMode } from "../../models/theme";
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = ({}) => {
+  const dispatch = useAppDispatch();
+
   return (
     <Block>
       <Inner>
         <h3>알 빠진 주판</h3>
         <Right>
-          <SearchButton>
+          <SearchButton onClick={() => dispatch(enableDarkMode())}>
             <FontAwesomeIcon icon={solid("search")} />
           </SearchButton>
         </Right>
