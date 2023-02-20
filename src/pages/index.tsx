@@ -1,8 +1,12 @@
 import BaseLayout from "../components/base/BaseLayout";
 import useCalculators from "../lib/hooks/useCalculators";
+import { useAppSelector, useAppDispatch } from "../models/core/hooks";
+import { increment } from "../models/counter";
 
 export default function Home() {
   const { calculators } = useCalculators();
+  const count = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
 
   return (
     <BaseLayout>
@@ -12,6 +16,8 @@ export default function Home() {
           <p>{item.description}</p>
         </div>
       ))}
+      <p>{count}</p>
+      <button onClick={() => dispatch(increment())}></button>
     </BaseLayout>
   );
 }
