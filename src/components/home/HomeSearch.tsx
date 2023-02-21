@@ -1,14 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import { mediaQuery } from "../../lib/styles/media";
+import { useAppDispatch, useAppSelector } from "../../models/core/hooks";
+import { changeSearchKeyword, selectSearchKeyword } from "../../models/home";
 import Input from "../common/Input";
 
 export interface HomeSearchProps {}
 
-const HomeSearch: React.FC<HomeSearchProps> = ({}) => {
+const HomeSearch: React.FC<HomeSearchProps> = () => {
+  const searchKeyword = useAppSelector(selectSearchKeyword);
+  const dispatch = useAppDispatch();
+
   return (
     <Block>
-      <SearchInput large />
+      <SearchInput
+        large
+        value={searchKeyword}
+        onChange={(e) => {
+          dispatch(changeSearchKeyword(e.target.value));
+        }}
+      />
     </Block>
   );
 };

@@ -4,16 +4,20 @@ import React from "react";
 import styled, { css } from "styled-components";
 import media from "../../lib/styles/media";
 
-export interface InputProps {
+export interface InputProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   className?: string;
   large?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({ className, large }) => {
+const Input: React.FC<InputProps> = ({ className, large, ...props }) => {
   return (
     <Block className={className} large>
       <FontAwesomeIcon icon={solid("search")} />
-      <input />
+      <input {...props} />
     </Block>
   );
 };
