@@ -20,7 +20,7 @@ const Block = styled.div`
 
   box-shadow: 0px 0 8px rgb(0, 0, 0, 0.08);
   color: ${({ theme }) => theme.text1};
-  background: ${({ theme }) => theme.bg_element1};
+  background: ${({ theme }) => theme.bg_page1};
 `;
 
 export default FloatingHeader;
