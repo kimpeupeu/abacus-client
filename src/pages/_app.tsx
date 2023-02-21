@@ -5,10 +5,9 @@ import { store } from "../models/core/store";
 import { ThemeProvider } from "styled-components";
 import { useAppDispatch, useAppSelector } from "../models/core/hooks";
 import { getCurrentTheme, themes } from "../lib/styles/theme";
+import ResetStyles from "../lib/styles/ResetStyles";
 import GlobalStyles from "../lib/styles/GlobalStyles";
 import { setMode } from "../models/theme";
-
-import "../styles/globals.css";
 
 const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const theme = useAppSelector((state) => state.theme.theme);
@@ -26,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <CustomThemeProvider>
         <Component {...pageProps} />
+        <ResetStyles />
         <GlobalStyles />
       </CustomThemeProvider>
     </Provider>
