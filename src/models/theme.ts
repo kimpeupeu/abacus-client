@@ -24,11 +24,18 @@ export const themeSlice = createSlice({
     setSystemTheme: (state, action: PayloadAction<"dark" | "light">) => {
       state.systemTheme = action.payload;
     },
+    toggleDarkMode: (state) => {
+      state.theme = state.theme == "dark" ? "light" : "dark";
+    },
   },
 });
 
-export const { enableDarkMode, enableLightMode, setSystemTheme } =
-  themeSlice.actions;
+export const {
+  enableDarkMode,
+  enableLightMode,
+  setSystemTheme,
+  toggleDarkMode,
+} = themeSlice.actions;
 
 export const selectTheme = (state: RootState) => state.theme.theme;
 
