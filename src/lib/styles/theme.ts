@@ -1,3 +1,6 @@
+import storage from "../utils/storage";
+import { isServer } from "../utils/utils";
+
 export type Theme = {
   bg_page1: string;
   bg_page2: string;
@@ -196,6 +199,29 @@ export const themes = {
   default: defaultTheme,
   light: lightTheme,
   dark: darkTheme,
+};
+
+export type ThemeNames = "light" | "dark" | "default";
+
+export const getSystemTheme: () => ThemeNames = () => {
+  if (!isServer) {
+    const isDarkTheme = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (isDarkTheme) {
+      return "dark";
+    }
+  }
+
+  return "light";
+};
+
+export const getCurrentTheme: () => ThemeNames = () => {
+  const savedTheme = storage.getItem("theme");
+  if (savedTheme) return savedTheme;
+
+  return getSystemTheme();
 };
 
 export default defaultTheme;

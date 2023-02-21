@@ -4,6 +4,7 @@ import Responsive from "../components/base/Responsive";
 import HomeLayout from "../components/home/HomeLayout";
 import HomeSearch from "../components/home/HomeSearch";
 import useCalculators from "../lib/hooks/useCalculators";
+import { isServer } from "../lib/utils/utils";
 import { useAppSelector, useAppDispatch } from "../models/core/hooks";
 import { increment } from "../models/counter";
 

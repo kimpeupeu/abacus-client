@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ThemeNames } from "../lib/styles/theme";
+import storage from "../lib/utils/storage";
 import { RootState } from "./core/store";
 
 export type ThemeState = {
-  theme: "dark" | "light" | "default";
-  systemTheme: "dark" | "light" | "not-ready";
+  theme: ThemeNames;
 };
 
 const initialState: ThemeState = {
   theme: "default",
-  systemTheme: "not-ready",
 };
 
 export const themeSlice = createSlice({
@@ -17,25 +17,25 @@ export const themeSlice = createSlice({
   reducers: {
     enableDarkMode: (state) => {
       state.theme = "dark";
+      storage.setItem("theme", state.theme);
     },
     enableLightMode: (state) => {
       state.theme = "light";
+      storage.setItem("theme", state.theme);
     },
-    setSystemTheme: (state, action: PayloadAction<"dark" | "light">) => {
-      state.systemTheme = action.payload;
+    setMode: (state, action: PayloadAction<ThemeNames>) => {
+      state.theme = action.payload;
+      storage.setItem("theme", state.theme);
     },
     toggleDarkMode: (state) => {
       state.theme = state.theme == "dark" ? "light" : "dark";
+      storage.setItem("theme", state.theme);
     },
   },
 });
 
-export const {
-  enableDarkMode,
-  enableLightMode,
-  setSystemTheme,
-  toggleDarkMode,
-} = themeSlice.actions;
+export const { enableDarkMode, enableLightMode, setMode, toggleDarkMode } =
+  themeSlice.actions;
 
 export const selectTheme = (state: RootState) => state.theme.theme;
 
