@@ -1,6 +1,7 @@
 import React from "react";
 import BaseLayout from "../components/base/BaseLayout";
 import Responsive from "../components/base/Responsive";
+import CalCardGrid from "../components/common/CalCardGrid";
 import HomeLayout from "../components/home/HomeLayout";
 import HomeSearch from "../components/home/HomeSearch";
 import { useAppSelector } from "../models/core/hooks";
@@ -14,13 +15,7 @@ export default function Home() {
       <Responsive>
         <HomeSearch />
         <HomeLayout>
-          {calculators.map((item, index) => (
-            <div key={index}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <p>{item.id}</p>
-            </div>
-          ))}
+          <CalCardGrid calculators={calculators} />
         </HomeLayout>
       </Responsive>
     </BaseLayout>

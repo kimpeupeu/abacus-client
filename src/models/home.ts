@@ -58,7 +58,7 @@ const initialState: HomeState = {
     },
     {
       id: "10",
-      title: "일반 계산기",
+      title: "군적금 계산기",
       description: "간단한 복리계산기로 다양한 계산을 해보세요!",
     },
   ],
